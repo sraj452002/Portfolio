@@ -1,0 +1,11 @@
+{
+  "name": "shubham-raj-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shubham Raj's portfolio, told as an anime series. Plain HTML, CSS and JavaScript.",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "author": "Shubham Raj",
+  "license": "UNLICENSED"
+}

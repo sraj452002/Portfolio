@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shubham Raj</title>
+<meta name="description" content="Shubham Raj, Full Stack Software Engineer (MERN). A portfolio told as an anime series.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Shantell+Sans:wght@400;600;700&display=swap">
+<meta property="og:title" content="Shubham Raj · Full Stack Software Engineer">
+<meta property="og:description" content="A portfolio told as an anime series: story arcs, special moves and playable training missions.">
+<meta name="theme-color" content="#FF3D8B">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="#top" aria-label="Shubham Raj, back to the title card"><span class="bs" aria-hidden="true">SR</span><span class="logo-t">SHUBHAM<br>RAJ</span></a>
+  <nav class="nav" aria-label="Episodes">
+    <a href="#top"><b>OP</b>Title</a>
+    <a href="#profile"><b>EP1</b>Profile</a>
+    <a href="#moves"><b>EP2</b>Moves</a>
+    <a href="#story"><b>EP3</b>Story</a>
+    <a href="#missions"><b>EP4</b>Missions</a>
+    <a href="#next"><b>NEXT</b>Contact</a>
+  </nav>
+  <button class="tbtn" id="termBtn" type="button">Cheat codes</button>
+  <div class="expbar" aria-hidden="true"><i id="expFill"></i></div>
+</header>
+<div class="ticker" aria-hidden="true"><div class="track" id="ticker"><span>放送中 NOW AIRING</span><span>✦ EP3 · THE ENGINE ARC</span><span>✦ NODE.JS</span><span>✦ REACT</span><span>✦ TYPESCRIPT</span><span>✦ BULLMQ</span><span>✦ REDIS</span><span>✦ LLM APIs</span><span>✦ OFFLINE-FIRST PWA</span><span>✦ SOCKET.IO</span><span>✦ PRESS ` FOR CHEAT CODES</span><span>✦</span></div></div>
+
+<main class="sheet" id="main">
+
+<section class="hero" id="top">
+  <div class="hero-panel" id="heroPanel">
+    <div class="rays" aria-hidden="true"></div>
+    <div class="tone" aria-hidden="true"></div>
+    <svg class="cloud c1" viewBox="0 0 160 80" aria-hidden="true"><path d="M30 68 a20 20 0 0 1 4-38 a26 26 0 0 1 46-14 a22 22 0 0 1 38 8 a20 20 0 0 1 16 44 Z" fill="#fff" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></svg>
+    <svg class="cloud c2" viewBox="0 0 160 80" aria-hidden="true"><path d="M30 68 a20 20 0 0 1 4-38 a26 26 0 0 1 46-14 a22 22 0 0 1 38 8 a20 20 0 0 1 16 44 Z" fill="#fff" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></svg>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <canvas id="speed" aria-hidden="true"></canvas>
+    <div class="hero-grid">
+      <div class="title-col">
+        <div class="badges"><span class="sticker"><span class="live" aria-hidden="true"></span>放送中 · NOW AIRING</span><span class="series">A portfolio series · 全4話</span></div>
+        <p class="kata" lang="ja">シュバム・ラージ</p>
+        <h1 class="title" id="title" aria-label="Shubham Raj"><span class="w w1" aria-hidden="true">Shubham</span><span class="w w2" aria-hidden="true">Raj</span></h1>
+        <p class="role"><span class="jp" lang="ja">フルスタックエンジニア</span>Full Stack Software Engineer · MERN</p>
+        <p class="narr y">Nearly three years in production. He builds the parts of a product that have to keep running: a DAG-based workflow automation engine, an LLM chatbot backend, an offline-first POS and real-time Socket.io apps.</p>
+        <div class="cta">
+          <button class="btn pink" id="startBtn" type="button"><span class="tri" aria-hidden="true"></span>Press start</button>
+          <button class="btn" id="termBtn2" type="button">Cheat codes</button>
+          <span class="hint">or press <kbd>`</kbd></span>
+        </div>
+      </div>
+      <div class="char-col">
+        <p class="bubble" id="charLine" aria-live="polite">Yo! I'm Shubham. Want to see what I build?</p>
+        <div class="char" id="char" role="button" tabindex="0" aria-label="Talk to Shubham">
+          <svg class="chibi" viewBox="0 0 320 420" aria-hidden="true">
+            <defs>
+              <linearGradient id="irisG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A0F0A"/><stop offset="1" stop-color="#7A4524"/></linearGradient>
+            </defs>
+            <ellipse cx="160" cy="410" rx="100" ry="10" fill="#141414" opacity=".18"/>
+            <path class="aura" id="aura" d="" fill="#FFD23F" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+            <g id="ch-body">
+              <path d="M98 262 Q160 230 222 262 L214 288 Q160 262 106 288 Z" fill="#C92A62" stroke="#141414" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M60 414 L72 318 Q80 270 136 258 L184 258 Q240 270 248 318 L260 414 Z" fill="#FF3D8B" stroke="#141414" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M142 226 L142 262 Q160 274 178 262 L178 226 Z" fill="#C2804F" stroke="#141414" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M146 278 L141 326 M174 278 L179 326" stroke="#141414" stroke-width="9" stroke-linecap="round"/>
+              <path d="M146 278 L141 326 M174 278 L179 326" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+              <path d="M108 270 Q160 302 212 270" fill="none" stroke="#141414" stroke-width="10" stroke-linecap="round"/>
+              <rect x="90" y="252" width="28" height="36" rx="11" fill="#3DB2FF" stroke="#141414" stroke-width="5"/>
+              <rect x="202" y="252" width="28" height="36" rx="11" fill="#3DB2FF" stroke="#141414" stroke-width="5"/>
+              <rect x="96" y="314" width="128" height="84" rx="9" fill="#EEF1F7" stroke="#141414" stroke-width="5"/>
+              <rect x="96" y="314" width="128" height="14" rx="6" fill="#D5DBE7" stroke="#141414" stroke-width="5"/>
+              <text class="lap-logo" x="160" y="374" text-anchor="middle">&lt;/&gt;</text>
+              <circle cx="96" cy="354" r="16" fill="#C2804F" stroke="#141414" stroke-width="5"/>
+              <circle cx="224" cy="354" r="16" fill="#C2804F" stroke="#141414" stroke-width="5"/>
+            </g>
+            <g class="head" id="ch-head">
+              <path d="M76 152 Q68 58 160 50 Q252 58 244 152 L238 198 Q160 150 82 198 Z" fill="#1E1A33" stroke="#141414" stroke-width="5" stroke-linejoin="round"/>
+              <ellipse cx="84" cy="170" rx="13" ry="18" fill="#D9955F" stroke="#141414" stroke-width="5"/>
+              <ellipse cx="236" cy="170" rx="13" ry="18" fill="#D9955F" stroke="#141414" stroke-width="5"/>
+              <path d="M88 140 Q88 82 160 80 Q232 82 232 140 Q232 200 196 226 Q160 246 124 226 Q88 200 88 140 Z" fill="#D9955F" stroke="#141414" stroke-width="5" stroke-linejoin="round"/>
+              <ellipse cx="113" cy="198" rx="14" ry="7" fill="#FF7FA8" opacity=".6"/>
+              <ellipse cx="207" cy="198" rx="14" ry="7" fill="#FF7FA8" opacity=".6"/>
+              <path d="M106 195 l-4 6 M114 195 l-4 6 M122 195 l-4 6 M200 195 l-4 6 M208 195 l-4 6 M216 195 l-4 6" stroke="#D9446F" stroke-width="2.2" stroke-linecap="round"/>
+              <g class="eyes">
+                <ellipse cx="128" cy="168" rx="18" ry="22" fill="#fff" stroke="#141414" stroke-width="3"/>
+                <ellipse cx="131" cy="171" rx="12.5" ry="17" fill="url(#irisG)"/>
+                <circle cx="126" cy="163" r="5.5" fill="#fff"/>
+                <circle cx="136" cy="178" r="2.6" fill="#fff"/>
+                <path d="M107 156 Q128 140 151 154" stroke="#141414" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+                <ellipse cx="192" cy="168" rx="18" ry="22" fill="#fff" stroke="#141414" stroke-width="3"/>
+                <ellipse cx="189" cy="171" rx="12.5" ry="17" fill="url(#irisG)"/>
+                <circle cx="184" cy="163" r="5.5" fill="#fff"/>
+                <circle cx="194" cy="178" r="2.6" fill="#fff"/>
+                <path d="M169 154 Q192 140 213 156" stroke="#141414" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+              </g>
+              <path d="M108 136 L146 142 M212 136 L174 142" stroke="#141414" stroke-width="7" stroke-linecap="round"/>
+              <path d="M160 188 l-5 9 l7 0" fill="none" stroke="#A8643A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M143 208 Q160 230 177 208 Z" fill="#7A1F2B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M151 218 Q160 225 169 218 Q160 213 151 218 Z" fill="#FF6F8E"/>
+              <path d="M80 152 L76 104 L52 92 L86 78 L80 44 L118 60 L132 20 L158 52 L186 16 L198 56 L238 36 L230 76 L268 86 L244 108 L242 152 L230 112 L216 128 L204 100 L188 126 L172 98 L156 124 L142 98 L126 126 L114 102 L102 128 L90 110 Z" fill="#1E1A33" stroke="#141414" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M118 72 Q150 56 184 64" stroke="#5B5FC7" stroke-width="6" fill="none" stroke-linecap="round" opacity=".85"/>
+            </g>
+          </svg>
+          <span class="sfx" style="--fs:30px;--c:#FFD23F;--rot:14deg;right:-6px;top:52%">キラッ</span>
+        </div>
+      </div>
+    </div>
+    <span class="sfx ghost v" aria-hidden="true" style="--fs:clamp(34px,5vw,64px);--rot:0deg;left:48%;top:8%">ゴゴゴゴ</span>
+  </div>
+</section>
+
+<section class="ep" id="profile">
+  <header class="ep-head">
+    <span class="hanko" lang="ja">第1話</span>
+    <span class="ep-label">Episode 01 · Character profile</span>
+    <h2 class="ep-title" style="--c:var(--sky)">Meet the protagonist</h2>
+    <span class="ep-jp" lang="ja" aria-hidden="true">キャラ紹介</span>
+  </header>
+  <div class="profile">
+    <div class="pn portrait">
+      <span class="tag">PROTAGONIST · 主人公</span>
+      <svg viewBox="0 0 320 420" aria-hidden="true"><use href="#ch-body"></use><use href="#ch-head"></use></svg>
+      <span class="sfx" lang="ja">ジャーン</span>
+    </div>
+    <div class="pn sheet-card">
+      <h3>Character sheet</h3>
+      <dl>
+        <dt><b lang="ja">名前</b>Name</dt><dd>Shubham Raj</dd>
+        <dt><b lang="ja">職業</b>Class</dt><dd>Full Stack Software Engineer (MERN)</dd>
+        <dt><b lang="ja">所属</b>Guild</dt><dd>NIIT · Gurugram</dd>
+        <dt><b lang="ja">拠点</b>Base</dt><dd>Delhi NCR, India</dd>
+        <dt><b lang="ja">出身</b>Origin</dt><dd>B.Tech, Electrical Engineering</dd>
+        <dt><b lang="ja">経験値</b>EXP</dt><dd><span data-since="2024-01">2 yr 9 mo</span> in production</dd>
+        <dt><b lang="ja">必殺技</b>Special move</dt><dd>DAG-based workflow automation</dd>
+        <dt><b lang="ja">特性</b>Trait</dt><dd>Mentors junior engineers</dd>
+      </dl>
+      <div class="stats" aria-label="Number of tools listed on the resume, per area">
+        <h4>STATS · tools listed on the resume</h4>
+        <div class="stat"><span>Frontend</span><span class="sbar" style="--c:var(--pink)"><i style="width:100%"></i></span><span class="num">10</span></div>
+        <div class="stat"><span>Backend</span><span class="sbar" style="--c:var(--sky)"><i style="width:90%"></i></span><span class="num">9</span></div>
+        <div class="stat"><span>Testing</span><span class="sbar" style="--c:var(--mint)"><i style="width:90%"></i></span><span class="num">9</span></div>
+        <div class="stat"><span>Practices</span><span class="sbar" style="--c:var(--pop)"><i style="width:90%"></i></span><span class="num">9</span></div>
+        <div class="stat"><span>Languages</span><span class="sbar" style="--c:var(--pink)"><i style="width:80%"></i></span><span class="num">8</span></div>
+        <div class="stat"><span>Cloud</span><span class="sbar" style="--c:var(--sky)"><i style="width:80%"></i></span><span class="num">8</span></div>
+        <div class="stat"><span>Databases</span><span class="sbar" style="--c:var(--mint)"><i style="width:70%"></i></span><span class="num">7</span></div>
+        <div class="stat"><span>AI / LLM</span><span class="sbar" style="--c:var(--pop)"><i style="width:40%"></i></span><span class="num">4</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="lore">
+    <div style="display:grid;gap:14px">
+      <p class="narr y"><b>Currently:</b> building an n8n-style workflow automation engine at NIIT. Workflows are graphs of pluggable nodes, a Redis-backed queue runs them off the request path, and every run records each node's input, output, status and duration.</p>
+      <p class="narr"><b>Previously:</b> a Jira ticket tracker with automated overdue alerts, and a React point-of-sale app that keeps billing with no network.</p>
+    </div>
+    <div class="bubble-wrap">
+      <svg class="av" viewBox="64 12 192 228" aria-hidden="true"><use href="#ch-head"></use></svg>
+      <p class="bubble">I own features end to end, write the HLD/LLD docs, review code and mentor junior engineers. Before all this, I studied electrical engineering.</p>
+    </div>
+  </div>
+  <div class="yonkoma">
+    <h3>Origin story <small lang="ja">4コマ · four-panel</small></h3>
+    <div class="y-grid">
+      <div class="pn y-pn"><span class="sfx" lang="ja">ペラッ</span>
+        <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 14 Q16 8 5 12 V44 Q16 40 28 46 Q40 40 51 44 V12 Q40 8 28 14 Z" fill="#fff" stroke="#141414" stroke-width="3.5" stroke-linejoin="round"/><path d="M28 14 V46 M11 20 H22 M11 27 H22 M34 20 H45 M34 27 H45" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span class="yr">2017</span><p>Class X (AISSE)</p><small>Sunshine Prep/High School, Muzaffarpur</small></div>
+      <div class="pn y-pn"><span class="sfx" lang="ja">よし!</span>
+        <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 10 L54 22 L28 34 L2 22 Z" fill="#141414"/><path d="M14 28 V40 Q28 48 42 40 V28" fill="#3DB2FF" stroke="#141414" stroke-width="3.5" stroke-linejoin="round"/><path d="M50 24 V38" stroke="#FFD23F" stroke-width="3.5" stroke-linecap="round"/><circle cx="50" cy="40" r="3" fill="#FFD23F" stroke="#141414" stroke-width="2"/></svg>
+        <span class="yr">2019</span><p>Class XII (AISSCE)</p><small>Trident Public School, Muzaffarpur</small></div>
+      <div class="pn y-pn"><span class="sfx" lang="ja">バチッ</span>
+        <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M33 3 L11 32 H26 L21 53 L45 21 H30 Z" fill="#FFD23F" stroke="#141414" stroke-width="3.5" stroke-linejoin="round"/></svg>
+        <span class="yr">2019–23</span><p>B.Tech, Electrical Engineering</p><small>Dr. B.C. Roy Engineering College, Durgapur</small></div>
+      <div class="pn y-pn"><span class="sfx" lang="ja">ドン!</span>
+        <svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 3 Q43 15 41 36 H15 Q13 15 28 3 Z" fill="#fff" stroke="#141414" stroke-width="3.5" stroke-linejoin="round"/><circle cx="28" cy="20" r="5.5" fill="#3DB2FF" stroke="#141414" stroke-width="3"/><path d="M15 28 L7 41 L15 39 Z M41 28 L49 41 L41 39 Z" fill="#FF3D8B" stroke="#141414" stroke-width="3" stroke-linejoin="round"/><path d="M21 38 L28 53 L35 38 Z" fill="#FFD23F" stroke="#141414" stroke-width="3" stroke-linejoin="round"/></svg>
+        <span class="yr">2024</span><p>First production deploy</p><small>Webmintra Technologies, Noida</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="ep" id="moves">
+  <header class="ep-head">
+    <span class="hanko" lang="ja">第2話</span>
+    <span class="ep-label">Episode 02 · Special moves · tap a card to flip it</span>
+    <h2 class="ep-title" style="--c:var(--pink)">Special moves</h2>
+    <span class="ep-jp" lang="ja" aria-hidden="true">必殺技</span>
+  </header>
+  <ul class="moves" id="cards">
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--pink)" aria-label="Frontend, 10 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">フロントエンド</span><span class="cnt">×10</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="4" fill="#fff" stroke="#141414" stroke-width="3"/><path d="M5 17 H43" stroke="#141414" stroke-width="3"/><circle cx="10.5" cy="13" r="1.6" fill="#141414"/><circle cx="15.5" cy="13" r="1.6" fill="#141414"/><rect x="11" y="22" width="14" height="11" rx="2" fill="#FF3D8B" stroke="#141414" stroke-width="2.5"/><path d="M29 24 H37 M29 30 H35" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+          <h3>Frontend</h3><p class="prev">React.js · Next.js · Redux · and 7 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Frontend<small>10 moves</small></h4><ul><li>React.js</li><li>Next.js</li><li>Redux</li><li>Zustand</li><li>React Query</li><li>Tailwind CSS</li><li>Material UI</li><li>Vite</li><li>Webpack</li><li>PWA</li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--sky)" aria-label="Backend, 9 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">バックエンド</span><span class="cnt">×9</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="6" width="32" height="10" rx="3" fill="#fff" stroke="#141414" stroke-width="3"/><rect x="8" y="19" width="32" height="10" rx="3" fill="#fff" stroke="#141414" stroke-width="3"/><rect x="8" y="32" width="32" height="10" rx="3" fill="#fff" stroke="#141414" stroke-width="3"/><circle cx="14" cy="11" r="2" fill="#2EE6A6" stroke="#141414" stroke-width="1.5"/><circle cx="14" cy="24" r="2" fill="#2EE6A6" stroke="#141414" stroke-width="1.5"/><circle cx="14" cy="37" r="2" fill="#FF3D8B" stroke="#141414" stroke-width="1.5"/><path d="M22 11 H34 M22 24 H34 M22 37 H34" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+          <h3>Backend</h3><p class="prev">Node.js · Express.js · BullMQ · and 6 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Backend<small>9 moves</small></h4><ul><li>Node.js</li><li>Express.js</li><li>REST APIs</li><li>GraphQL</li><li>Socket.io</li><li>Microservices</li><li>BullMQ</li><li>JWT</li><li>OAuth 2.0</li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--pop)" aria-label="Databases, 7 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">データベース</span><span class="cnt">×7</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 12 V36 Q24 46 38 36 V12" fill="#fff" stroke="#141414" stroke-width="3"/><ellipse cx="24" cy="12" rx="14" ry="5.5" fill="#FFD23F" stroke="#141414" stroke-width="3"/><path d="M10 24 Q24 33 38 24" fill="none" stroke="#141414" stroke-width="3"/></svg></div>
+          <h3>Databases</h3><p class="prev">MongoDB · PostgreSQL · Redis · and 4 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Databases<small>7 moves</small></h4><ul><li>MySQL</li><li>PostgreSQL</li><li>MongoDB</li><li>Redis</li><li>IndexedDB</li><li>Sequelize</li><li>Mongoose</li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--mint)" aria-label="Cloud and DevOps, 8 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">クラウド</span><span class="cnt">×8</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 36 a8 8 0 0 1 1-16 a11 11 0 0 1 21-3 a9 9 0 0 1 3 19 Z" fill="#fff" stroke="#141414" stroke-width="3" stroke-linejoin="round"/><path d="M24 24 V34 M20 30 L24 34 L28 30" stroke="#141414" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Cloud &amp; DevOps</h3><p class="prev">Docker · AWS · GitHub Actions · and 5 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Cloud &amp; DevOps<small>8 moves</small></h4><ul><li>AWS EC2</li><li>AWS S3</li><li>AWS Lambda</li><li>Docker</li><li>GitHub Actions</li><li>Jenkins</li><li>Nginx</li><li>Linux</li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--sky)" aria-label="Languages, 8 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">言語</span><span class="cnt">×8</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 14 L6 24 L16 34 M32 14 L42 24 L32 34" stroke="#141414" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 10 L21 38" stroke="#FF3D8B" stroke-width="4" stroke-linecap="round"/></svg></div>
+          <h3>Languages</h3><p class="prev">JavaScript · TypeScript · Python · and 5 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Languages<small>8 moves</small></h4><ul><li>JavaScript (ES6+)</li><li>TypeScript</li><li>Python (FastAPI)</li><li>SQL</li><li>C++</li><li>HTML5</li><li>CSS3</li><li>SASS</li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--mint)" aria-label="Testing and tools, 9 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">テスト</span><span class="cnt">×9</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 L40 11 V24 Q40 37 24 43 Q8 37 8 24 V11 Z" fill="#fff" stroke="#141414" stroke-width="3" stroke-linejoin="round"/><path d="M16 24 L22 30 L33 18" stroke="#0E9F5A" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Testing &amp; Tools</h3><p class="prev">Jest · Supertest · Swagger · and 6 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Testing &amp; Tools<small>9 moves</small></h4><ul><li>Jest</li><li>React Testing Library</li><li>Supertest</li><li>Postman</li><li>Swagger</li><li>Git</li><li>SVN</li><li>Jira</li><li>Confluence</li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--pop)" aria-label="AI and LLM, 4 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">人工知能</span><span class="cnt">×4</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 6 L24 18 L36 22 L24 26 L20 38 L16 26 L4 22 L16 18 Z" fill="#FFD23F" stroke="#141414" stroke-width="3" stroke-linejoin="round"/><path d="M37 28 L39 34 L45 36 L39 38 L37 44 L35 38 L29 36 L35 34 Z" fill="#FF3D8B" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+          <h3>AI / LLM</h3><p class="prev">OpenAI API · Gemini API · RAG · and 1 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>AI / LLM<small>4 moves</small></h4><ul><li>OpenAI API</li><li>Gemini API</li><li>RAG</li><li>Prompt Engineering <span class="cert">CERTIFIED</span></li></ul></div>
+      </div></article></li>
+    <li class="card-wrap"><article class="card" tabindex="0" style="--c:var(--pink)" aria-label="Practices, 9 moves. Press Enter to flip.">
+      <div class="card-in">
+        <div class="face front"><div class="band"><span lang="ja">設計</span><span class="cnt">×9</span></div>
+          <div class="emb"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 L40 40 L8 8 Z" fill="#fff" stroke="#141414" stroke-width="3" stroke-linejoin="round"/><path d="M15 33 L25 33 L15 23 Z" fill="#3DB2FF" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><path d="M8 16 H12 M8 24 H12 M8 32 H12" stroke="#141414" stroke-width="2.5"/></svg></div>
+          <h3>Practices</h3><p class="prev">System Design · SOLID · TDD · and 6 more</p><span class="flip-hint">tap to flip ↻</span></div>
+        <div class="face back"><h4>Practices<small>9 moves</small></h4><ul><li>System Design (HLD/LLD)</li><li>DSA</li><li>OOP</li><li>SOLID</li><li>Design Patterns</li><li>Agile/Scrum</li><li>TDD</li><li>CI/CD</li><li>Code Reviews</li></ul></div>
+      </div></article></li>
+  </ul>
+</section>
+
+<section class="ep" id="story">
+  <header class="ep-head">
+    <span class="hanko" lang="ja">第3話</span>
+    <span class="ep-label">Episode 03 · Story arcs · <span data-since="2024-01">2 yr 9 mo</span> so far</span>
+    <h2 class="ep-title" style="--c:var(--pop)">Story arcs</h2>
+    <span class="ep-jp" lang="ja" aria-hidden="true">物語</span>
+  </header>
+  <div class="arcs">
+
+    <article class="arc" style="--c:var(--mint)">
+      <div class="pn pn-title">
+        <div class="chap"><span class="jp" lang="ja">第一章</span>ARC 01</div>
+        <h3 class="arc-name">The Offline Arc</h3>
+        <p class="arc-role">Web Developer</p>
+        <p class="arc-meta">Webmintra Technologies · Noida · Jan 2024 – Mar 2025</p>
+        <span class="stamp" lang="ja">完<small>COMPLETE</small></span>
+      </div>
+      <div class="pn pn-art" aria-hidden="true">
+        <svg viewBox="0 0 220 170"><path d="M40 18 H124 V136 l-10.5 9 -10.5 -9 -10.5 9 -10.5 -9 -10.5 9 -10.5 -9 -10.5 9 -10.5 -9 Z" fill="#fff" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M56 42 H108 M56 60 H96 M56 78 H108 M56 96 H88" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/><path d="M56 116 H108" stroke="#FF3D8B" stroke-width="5" stroke-linecap="round"/><path d="M140 92 Q168 66 196 92 M150 104 Q168 88 186 104" fill="none" stroke="#141414" stroke-width="5" stroke-linecap="round"/><circle cx="168" cy="116" r="6" fill="#141414"/><path d="M142 62 L196 132" stroke="#E5312B" stroke-width="7" stroke-linecap="round"/><path d="M186 20 L190 32 L202 36 L190 40 L186 52 L182 40 L170 36 L182 32 Z" fill="#FFD23F" stroke="#141414" stroke-width="3" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pn pn-a">
+        <p class="narr">Our hero joins Webmintra and builds the Shipment, Ledger and Reports modules of a React.js POS, with Redux Toolkit and reusable custom hooks for data fetching, pagination and form state.</p>
+        <p class="narr">Then come throttled infinite scroll and a password-reset API with expiring tokens.</p>
+      </div>
+      <div class="pn pn-b">
+        <svg class="av" viewBox="64 12 192 228" aria-hidden="true"><use href="#ch-head"></use></svg>
+        <p class="bubble">Network down? Billing keeps going. I made the POS offline-first with IndexedDB storage that syncs on reconnect!</p>
+      </div>
+      <div class="pn pn-c">
+        <p class="narr y">A PWA service worker caches the app shell for instant loads and auto-updates on new builds.</p>
+        <p class="narr">REST APIs for payments, maps and OAuth 2.0 social login get wired into responsive HTML/CSS/JS UIs.</p>
+        <p class="narr">Figma designs become features, built with designers, QA and product owners through Git branches and PR reviews.</p>
+      </div>
+      <div class="pn pn-items"><h4>ITEM GET!</h4><ul><li>React</li><li>Redux Toolkit</li><li>IndexedDB</li><li>Service Worker</li><li>PWA</li><li>OAuth 2.0</li></ul></div>
+    </article>
+
+    <div class="lvl"><div class="burst"><div><b>NEW STAGE!</b><span>Joined NIIT · Apr 2025</span></div></div></div>
+
+    <article class="arc" style="--c:var(--sky)">
+      <div class="pn pn-title">
+        <div class="chap"><span class="jp" lang="ja">第二章</span>ARC 02</div>
+        <h3 class="arc-name">The Tracker Arc</h3>
+        <p class="arc-role">Associate Software Engineer</p>
+        <p class="arc-meta">NIIT · Gurugram · Apr 2025 – Jun 2026</p>
+        <span class="stamp" lang="ja">完<small>COMPLETE</small></span>
+      </div>
+      <div class="pn pn-art" aria-hidden="true">
+        <svg viewBox="0 0 220 170"><rect x="14" y="20" width="132" height="122" rx="8" fill="#fff" stroke="#141414" stroke-width="4"/><path d="M58 20 V142 M102 20 V142" stroke="#141414" stroke-width="3"/><rect x="22" y="32" width="28" height="20" rx="3" fill="#FF3D8B" stroke="#141414" stroke-width="3"/><rect x="22" y="60" width="28" height="20" rx="3" fill="#FFD23F" stroke="#141414" stroke-width="3"/><rect x="66" y="32" width="28" height="20" rx="3" fill="#3DB2FF" stroke="#141414" stroke-width="3"/><rect x="110" y="32" width="28" height="20" rx="3" fill="#2EE6A6" stroke="#141414" stroke-width="3"/><rect x="110" y="60" width="28" height="20" rx="3" fill="#2EE6A6" stroke="#141414" stroke-width="3"/><circle cx="178" cy="110" r="30" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="160" cy="80" r="8" fill="#FF3D8B" stroke="#141414" stroke-width="3"/><circle cx="196" cy="80" r="8" fill="#FF3D8B" stroke="#141414" stroke-width="3"/><path d="M178 110 V92 M178 110 L190 118" stroke="#141414" stroke-width="4" stroke-linecap="round"/><path d="M204 66 l8 -8 M152 66 l-8 -8" stroke="#141414" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pn pn-a">
+        <p class="narr">At NIIT he builds a Jira ticket tracker in React, Node.js/Express and MySQL, syncing issues from the Jira REST API via JQL into Sequelize ORM models with associations and migrations.</p>
+        <p class="narr">Server-side pagination, MySQL indexing, lazy loading and memoization keep it fast.</p>
+      </div>
+      <div class="pn pn-b">
+        <svg class="av" viewBox="64 12 192 228" aria-hidden="true"><use href="#ch-head"></use></svg>
+        <p class="bubble">No more manual tracking! A node-cron job flags overdue tickets on a filterable React dashboard.</p>
+      </div>
+      <div class="pn pn-c">
+        <p class="narr y">EdTech UI defects fall to Flexbox/Grid and media queries, for responsive, WCAG-compliant layouts.</p>
+        <p class="narr">Agile/Scrum sprints with Jira, Confluence and SVN, Jest/RTL unit tests, code reviews and production root-cause analysis.</p>
+      </div>
+      <div class="pn pn-items"><h4>ITEM GET!</h4><ul><li>React</li><li>Node.js</li><li>MySQL</li><li>Sequelize</li><li>node-cron</li><li>Jira REST API</li><li>Jest</li><li>RTL</li></ul></div>
+    </article>
+
+    <div class="lvl"><div class="burst"><div><b>LEVEL UP!!</b><span>Promoted to Software Engineer · Jul 2026</span></div></div></div>
+
+    <article class="arc" style="--c:var(--pink)">
+      <div class="pn pn-title">
+        <div class="chap"><span class="jp" lang="ja">第三章</span>ARC 03 · <span data-since="2026-07">3 mo</span> in</div>
+        <h3 class="arc-name">The Engine Arc</h3>
+        <p class="arc-role">Software Engineer</p>
+        <p class="arc-meta">NIIT · Gurugram · Jul 2026 – now</p>
+        <span class="stamp live" lang="ja">放送中<small>NOW AIRING</small></span>
+      </div>
+      <div class="pn pn-art" aria-hidden="true">
+        <svg viewBox="0 0 220 170"><path d="M38 88 L96 42 M38 88 L96 130 M96 42 L156 86 M96 130 L156 86 M156 86 L196 40 M156 86 L196 132" stroke="#141414" stroke-width="5" stroke-linecap="round"/><circle cx="38" cy="88" r="17" fill="#FFD23F" stroke="#141414" stroke-width="4"/><circle cx="96" cy="42" r="15" fill="#3DB2FF" stroke="#141414" stroke-width="4"/><circle cx="96" cy="130" r="15" fill="#2EE6A6" stroke="#141414" stroke-width="4"/><path d="M142 72 L170 72 L170 100 L142 100 Z" transform="rotate(45 156 86)" fill="#FF3D8B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><circle cx="196" cy="40" r="12" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="196" cy="132" r="12" fill="#fff" stroke="#141414" stroke-width="4"/><path d="M64 20 L67 29 L76 32 L67 35 L64 44 L61 35 L52 32 L61 29 Z" fill="#FFD23F" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><path d="M126 140 L128 146 L134 148 L128 150 L126 156 L124 150 L118 148 L124 146 Z" fill="#FF3D8B" stroke="#141414" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pn pn-a">
+        <p class="narr">He architects an n8n-inspired workflow automation engine in Node.js/Express. Workflows are DAGs of pluggable nodes (triggers, HTTP calls, conditions, transforms) built with Strategy and Factory patterns.</p>
+        <p class="narr">The orchestration core handles cycle detection, topological-sort run order, conditional branching and per-run execution state: node input, output, status and duration.</p>
+      </div>
+      <div class="pn pn-b">
+        <svg class="av" viewBox="64 12 192 228" aria-hidden="true"><use href="#ch-head"></use></svg>
+        <p class="bubble">Execution runs on a Redis-backed BullMQ queue with worker processes, so workflows never block a request and scale horizontally!</p>
+      </div>
+      <div class="pn pn-c">
+        <p class="narr y">Third-party calls get timeouts, exponential-backoff retries on 429/5xx and centralized error-handling middleware.</p>
+        <p class="narr">Versioned REST APIs cover the workflow lifecycle (create, validate, execute, monitor, activate) with schema validation, rate limiting, RBAC and Swagger/OpenAPI docs.</p>
+        <p class="narr">An AI chatbot backend arrives with per-session memory, system/user prompt templates, LLM API calls, context-window trimming and response post-processing.</p>
+        <p class="narr">Jest/Supertest tests, structured logging and Dockerized CI/CD. He writes the HLD/LLD docs, leads code reviews and mentors junior engineers.</p>
+      </div>
+      <div class="pn pn-items"><h4>ITEM GET!</h4><ul><li>Node.js</li><li>Express</li><li>TypeScript</li><li>BullMQ</li><li>Redis</li><li>Swagger</li><li>Jest</li><li>Docker</li><li>LLM APIs</li></ul></div>
+    </article>
+  </div>
+</section>
+
+<section class="ep" id="missions">
+  <header class="ep-head">
+    <span class="hanko" lang="ja">第4話</span>
+    <span class="ep-label">Episode 04 · Training missions · playable</span>
+    <h2 class="ep-title" style="--c:var(--mint)">Training missions</h2>
+    <span class="ep-jp" lang="ja" aria-hidden="true">修行</span>
+  </header>
+  <p class="lab-note">Small browser simulations of systems from the story. They run entirely on this page; the production code belongs to his employers.</p>
+
+  <div class="tabs" role="tablist" aria-label="Training missions">
+    <button class="tab" role="tab" id="t-dag" aria-controls="lab-dag" aria-selected="true" type="button">A · Combo chain<small>workflow engine</small></button>
+    <button class="tab" role="tab" id="t-retry" aria-controls="lab-retry" aria-selected="false" tabindex="-1" type="button">B · Boss: flaky API<small>retries + backoff</small></button>
+    <button class="tab" role="tab" id="t-pos" aria-controls="lab-pos" aria-selected="false" tabindex="-1" type="button">C · Blackout<small>offline POS</small></button>
+    <button class="tab" role="tab" id="t-chat" aria-controls="lab-chat" aria-selected="false" tabindex="-1" type="button">D · Memory limit<small>context window</small></button>
+  </div>
+
+  <div class="lab pn" role="tabpanel" id="lab-dag" aria-labelledby="t-dag">
+    <div class="lab-intro">
+      <div>
+        <h3>Combo chain: the workflow engine</h3>
+        <p>A seven-node workflow. Execute it to watch Kahn's algorithm pick the run order and the IF node choose a branch. Make the inventory API fail to take the false branch, or add a retry loop and watch the validator reject the cycle.</p>
+      </div>
+      <span class="from">From Arc 03 · NIIT</span>
+    </div>
+    <div class="controls">
+      <button class="btn pink" id="dagRun" type="button"><span class="tri" aria-hidden="true"></span>Execute</button>
+      <label class="sw" for="dagFail"><input type="checkbox" id="dagFail">Inventory API returns 500</label>
+      <label class="sw" for="dagCycle"><input type="checkbox" id="dagCycle">Add retry loop E → B</label>
+    </div>
+    <div class="dag-wrap scroll-x"><svg class="dag" id="dag" viewBox="0 0 840 320" role="img" aria-label="Workflow graph: Webhook, HTTP GET inventory, IF status 200, then either Transform and POST notify, or log and alert, then Respond."></svg></div>
+    <div class="order" id="dagOrder"></div>
+    <p class="msg" id="dagMsg" role="status"></p>
+    <div class="scroll-x">
+      <table class="st-table">
+        <thead><tr><th>Node</th><th>Status</th><th class="num">ms</th><th>Output</th></tr></thead>
+        <tbody id="dagRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="lab pn" role="tabpanel" id="lab-retry" aria-labelledby="t-retry" hidden>
+    <div class="lab-intro">
+      <div>
+        <h3>Boss battle: the flaky API</h3>
+        <p>Third-party APIs fail. Each retry waits twice as long as the last, with jitter so clients don't retry in lockstep, and a 429 respects its Retry-After header. Turn up the failure rate and send a request.</p>
+      </div>
+      <span class="from">From Arc 03 · NIIT</span>
+    </div>
+    <div class="controls">
+      <button class="btn pink" id="rSend" type="button"><span class="tri" aria-hidden="true"></span>Send request</button>
+      <label class="field" for="rRate">Failure rate <input type="range" id="rRate" min="0" max="95" step="5" value="60"><output id="rRateOut" for="rRate">60%</output></label>
+      <label class="field" for="rMax">Max retries <select id="rMax"><option>2</option><option>3</option><option selected>4</option><option>5</option></select></label>
+    </div>
+    <div class="retry-grid">
+      <div>
+        <div class="att-list" id="rList" aria-live="polite"></div>
+        <p class="msg" id="rRes" role="status" style="margin-top:14px"></p>
+      </div>
+<pre class="code" aria-label="Retry policy"><span class="c">// retry policy for outbound HTTP nodes</span>
+retry({
+  on:      [<span class="s">429</span>, <span class="s">500</span>, <span class="s">502</span>, <span class="s">503</span>, <span class="s">'ETIMEDOUT'</span>],
+  retries: <span class="s" id="rPolicyMax">4</span>,
+  base:    <span class="s">200</span>,    <span class="c">// ms</span>
+  factor:  <span class="s">2</span>,      <span class="c">// 200, 400, 800…</span>
+  jitter:  <span class="s">0.2</span>,    <span class="c">// ±20%</span>
+  timeout: <span class="s">1000</span>,   <span class="c">// per attempt</span>
+  respectRetryAfter: <span class="s">true</span>
+})
+<span class="c">// still failing → error middleware → 502</span></pre>
+    </div>
+  </div>
+
+  <div class="lab pn" role="tabpanel" id="lab-pos" aria-labelledby="t-pos" hidden>
+    <div class="lab-intro">
+      <div>
+        <h3>Blackout: offline-first billing</h3>
+        <p>Ring up a bill, then switch the network off. Bills keep saving on the device and sync in order when you reconnect. It's the same approach the Webmintra POS uses so billing works without a network.</p>
+      </div>
+      <span class="from">From Arc 01 · Webmintra</span>
+    </div>
+    <div class="pos-wrap" id="posWrap">
+      <div class="pos">
+        <div class="col counter">
+          <div class="netrow">
+            <h4>COUNTER · example menu</h4>
+            <label class="sw" for="posNet"><input type="checkbox" id="posNet" checked><span id="posNetLab">Online</span></label>
+          </div>
+          <div class="menu" id="posMenu"></div>
+          <ul class="cart" id="posCart"></ul>
+          <button class="btn pink" id="posCharge" type="button">Charge</button>
+        </div>
+        <div class="col dev">
+          <h4><span>ON THIS DEVICE · IndexedDB</span><b id="posDevN">0</b></h4>
+          <div class="qlist" id="posDev"></div>
+        </div>
+        <div class="col">
+          <h4><span>SERVER · synced</span><b id="posSrvN">2</b></h4>
+          <div class="qlist" id="posSrv"></div>
+          <ul class="poslog" id="posLog"><li>app shell served from service-worker cache</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lab pn" role="tabpanel" id="lab-chat" aria-labelledby="t-chat" hidden>
+    <div class="lab-intro">
+      <div>
+        <h3>Memory limit: context-window trimming</h3>
+        <p>Chat history grows until it no longer fits the model's context window. This assistant has a 240-token budget: the system prompt stays pinned and the oldest turns are dropped first. Replies are scripted from the resume, so no model is called.</p>
+      </div>
+      <span class="from">From Arc 03 · NIIT</span>
+    </div>
+    <div class="chat">
+      <div class="chatbox">
+        <div class="sys"><b>SYSTEM · PINNED</b> · <span id="sysText"></span></div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <form class="chatform" id="chatForm" autocomplete="off">
+          <label class="sr" for="chatIn">Ask about Shubham</label>
+          <input id="chatIn" type="text" placeholder="Ask me about my work…" maxlength="160">
+          <button class="btn yellow" type="submit">Send</button>
+        </form>
+      </div>
+      <div class="ctx">
+        <h4>CONTEXT WINDOW</h4>
+        <div class="big"><span id="ctxNum">0</span><small>/ 240 tokens</small></div>
+        <div class="ctxbar"><i id="ctxBar"></i></div>
+        <dl>
+          <dt>system</dt><dd>pinned · <span id="sysTok">0</span> tok</dd>
+          <dt>policy</dt><dd>drop oldest turns first, keep the latest exchange</dd>
+          <dt>estimate</dt><dd>≈ 1.3 tokens per word</dd>
+        </dl>
+        <h4>TRY ASKING</h4>
+        <div class="chips" id="chips">
+          <button type="button">Tell me about the workflow engine</button>
+          <button type="button">How does the offline POS work?</button>
+          <button type="button">What's your stack?</button>
+          <button type="button">How do I reach you?</button>
+        </div>
+        <h4>TRIM LOG</h4>
+        <ul class="ctxlog" id="ctxLog"><li class="none">nothing trimmed yet</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ep" id="next">
+  <div class="next">
+    <span class="otano" lang="ja">お楽しみに！<small>DON'T MISS IT</small></span>
+    <span class="kicker" lang="ja">次回予告 · NEXT EPISODE PREVIEW</span>
+    <p class="jp" lang="ja">次回「シュバム、チームに加入！？」</p>
+    <h3>Next time: Shubham joins your team!?</h3>
+    <p class="lede">Building something with Node.js, React or a queue that has to stay up? He'd like to hear about it. The next episode is up to you.</p>
+    <div class="contact-grid">
+      <div class="cb"><span class="cl">EMAIL</span><span class="val" id="cEmail">sraj452002@gmail.com</span><button class="cbtn" type="button" data-copy="sraj452002@gmail.com" data-target="cEmail">Copy</button></div>
+      <div class="cb"><span class="cl">PHONE</span><span class="val" id="cPhone">+91 7766062587</span><button class="cbtn" type="button" data-copy="+917766062587" data-target="cPhone">Copy</button></div>
+      <div class="cb"><span class="cl">LINKEDIN</span><a class="val" href="https://linkedin.com/in/shubham2002" target="_blank" rel="noopener">in/shubham2002</a><span></span></div>
+      <div class="cb"><span class="cl">GITHUB</span><a class="val" href="https://github.com/sraj452002" target="_blank" rel="noopener">sraj452002</a><span></span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="credits">
+  <span class="ed">ED · ENDING CREDITS</span>
+  <dl>
+    <dt>STARRING</dt><dd>Shubham Raj</dd>
+    <dt>STORY</dt><dd>his resume</dd>
+    <dt>MAIN CAST</dt><dd>Node.js · React · TypeScript · MongoDB · Redis</dd>
+    <dt>ANIMATION</dt><dd>CSS · Canvas 2D · Three.js</dd>
+    <dt>CHARACTER</dt><dd>an original cartoon avatar</dd>
+  </dl>
+  <p class="tsuzuku" lang="ja">つづく…</p>
+  <p class="colophon">To be continued. Press <kbd>`</kbd> for cheat codes.</p>
+</footer>
+</main>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="sfx-layer" id="sfxLayer" aria-hidden="true"></div>
+
+<div class="term" id="term" hidden>
+  <div class="term-win" role="dialog" aria-modal="true" aria-label="Cheat code console">
+    <div class="term-bar"><span>CHEAT CODES</span><button type="button" id="termClose">Close · Esc</button></div>
+    <div class="term-out" id="termOut" aria-live="polite"></div>
+    <form id="termForm" autocomplete="off"><label for="termIn">shubham&gt;</label><input id="termIn" type="text" spellcheck="false" autocapitalize="off" aria-label="Cheat code"></form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

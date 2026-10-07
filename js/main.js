@@ -12,6 +12,74 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const safe = (name, fn) => { try { fn(); } catch (e) { console.warn('[' + name + ']', e); } };
 const C = { ink: '#141414', pink: '#FF3D8B', sky: '#3DB2FF', pop: '#FFD23F', mint: '#2EE6A6' };
 
+/* ---------- sound effects (synthesized, no files) ---------- */
+const SFX = (() => {
+  const KEY = 'sr:sfx';
+  let on = true, ctx = null, master = null, noiseBuf = null, armed = false;
+  try { on = localStorage.getItem(KEY) !== 'off'; } catch (e) {}
+  const AC = window.AudioContext || window.webkitAudioContext;
+  // browsers only allow audio after a gesture, so nothing plays until the visitor interacts
+  const arm = () => { armed = true; if (on) init(); };
+  addEventListener('pointerdown', arm, { once: true, capture: true });
+  addEventListener('keydown', arm, { once: true, capture: true });
+  function init() {
+    if (ctx || !AC) return ctx;
+    ctx = new AC();
+    master = ctx.createGain(); master.gain.value = 0.32;
+    const comp = ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
+    noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+    const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    return ctx;
+  }
+  const ready = () => { if (!on || !armed || !init()) return false; if (ctx.state === 'suspended') ctx.resume(); return true; };
+  // one oscillator note: frequency (or [from, to] glide), start offset, duration, wave, volume
+  const tone = (f, t0, dur, type, vol) => {
+    const t = ctx.currentTime + t0, o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type || 'square';
+    if (Array.isArray(f)) { o.frequency.setValueAtTime(f[0], t); o.frequency.exponentialRampToValueAtTime(f[1], t + dur); } else o.frequency.setValueAtTime(f, t);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol || 0.3, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.02);
+  };
+  // filtered noise: filter type, cutoff (or [from, to] sweep), start offset, duration, volume
+  const noise = (ft, f, t0, dur, vol) => {
+    const t = ctx.currentTime + t0, s = ctx.createBufferSource(), fl = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = noiseBuf; fl.type = ft; fl.Q.value = 0.9;
+    if (Array.isArray(f)) { fl.frequency.setValueAtTime(f[0], t); fl.frequency.exponentialRampToValueAtTime(f[1], t + dur); } else fl.frequency.value = f;
+    g.gain.setValueAtTime(vol || 0.4, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    s.connect(fl); fl.connect(g); g.connect(master); s.start(t); s.stop(t + dur + 0.02);
+  };
+  const notes = (list, step, dur, type, vol) => list.forEach((f, i) => tone(f, i * step, dur, type, vol));
+  const S = {
+    click: () => tone(1400, 0, 0.045, 'triangle', 0.22),
+    tick: () => tone(2200, 0, 0.025, 'square', 0.05),
+    blip: () => notes([pick([520, 587, 659]), pick([698, 784, 880]), pick([587, 659, 740])], 0.055, 0.06, 'square', 0.12),
+    flip: () => { noise('bandpass', [900, 4200], 0, 0.16, 0.35); tone([500, 900], 0.02, 0.09, 'triangle', 0.08); },
+    whoosh: () => noise('bandpass', [600, 2600], 0, 0.28, 0.3),
+    boom: () => { noise('lowpass', [2400, 120], 0, 0.6, 0.9); tone([150, 38], 0, 0.55, 'sine', 0.9); tone([900, 200], 0, 0.12, 'square', 0.12); },
+    coin: () => { tone(988, 0, 0.08, 'square', 0.16); tone(1319, 0.07, 0.32, 'square', 0.16); },
+    win: () => notes([523, 659, 784, 1047], 0.085, 0.16, 'square', 0.14),
+    lose: () => notes([392, 330, 262, 196], 0.12, 0.2, 'sawtooth', 0.09),
+    hit: () => { noise('lowpass', 1400, 0, 0.12, 0.6); tone([220, 90], 0, 0.12, 'square', 0.18); },
+    crit: () => { tone([1200, 2400], 0, 0.1, 'square', 0.14); noise('highpass', 3000, 0, 0.1, 0.25); },
+    up: () => tone([300, 1200], 0, 0.22, 'triangle', 0.2),
+    down: () => tone([900, 140], 0, 0.35, 'triangle', 0.2),
+    open: () => notes([660, 990], 0.06, 0.08, 'square', 0.12),
+    err: () => { tone(160, 0, 0.09, 'square', 0.16); tone(160, 0.11, 0.12, 'square', 0.16); },
+    snip: () => { noise('highpass', 2500, 0, 0.05, 0.4); noise('highpass', 2500, 0.07, 0.05, 0.4); },
+    powerup: () => notes([392, 523, 659, 784, 1047, 1319, 1568], 0.06, 0.12, 'square', 0.13)
+  };
+  const api = { get on() { return on; } };
+  Object.keys(S).forEach(k => { api[k] = () => { try { if (ready()) S[k](); } catch (e) {} }; });
+  api.set = v => { on = v; try { localStorage.setItem(KEY, v ? 'on' : 'off'); } catch (e) {} if (v && armed) { init(); if (ctx && ctx.state === 'suspended') ctx.resume(); } };
+  return api;
+})();
+safe('sfx-toggle', () => {
+  const b = $('#sndBtn'); if (!b) return;
+  const paint = () => { b.setAttribute('aria-pressed', SFX.on); b.innerHTML = '<span aria-hidden="true">♪</span><span class="snd-t"> Sound ' + (SFX.on ? 'on' : 'off') + '</span>'; b.classList.toggle('off', !SFX.on); };
+  b.addEventListener('click', () => { SFX.set(!SFX.on); paint(); SFX.open(); });
+  paint();
+});
+
 /* ---------- durations ---------- */
 safe('dates', () => {
   const now = new Date();
@@ -63,7 +131,7 @@ safe('char', () => {
   ];
   let i = 0;
   const talk = () => {
-    i = (i + 1) % LINES.length;
+    i = (i + 1) % LINES.length; SFX.blip();
     lineEl.textContent = LINES[i];
     lineEl.classList.remove('pop'); void lineEl.offsetWidth; lineEl.classList.add('pop');
     charEl.classList.remove('hop'); void charEl.offsetWidth; charEl.classList.add('hop');
@@ -203,6 +271,7 @@ function speedLines() {
 /* ---------- impact! ---------- */
 function impact(word) {
   word = word || pick(['ドーン!!', 'バーン!!', 'ドドン!!']);
+  SFX.boom();
   if (!RM) {
     const f = $('#flash'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
     const m = $('#main'); m.classList.remove('shake'); void m.offsetWidth; m.classList.add('shake');
@@ -286,6 +355,7 @@ safe('nav', () => {
     }), { rootMargin: '-35% 0px -60% 0px' });
     ['top', 'profile', 'moves', 'story', 'missions', 'sidequest', 'next'].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
   }
+  $$('.nav a, .logo').forEach(a => a.addEventListener('click', SFX.whoosh));
   const onScroll = () => { const h = document.documentElement.scrollHeight - innerHeight; fill.style.width = Math.max(0, Math.min(1, scrollY / (h || 1))) * 100 + '%'; };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 });
@@ -296,6 +366,7 @@ safe('shots', () => {
   if (!main) return;
   thumbs.forEach(t => t.addEventListener('click', () => {
     if (t.classList.contains('on')) return;
+    SFX.click();
     thumbs.forEach(o => { const on = o === t; o.classList.toggle('on', on); o.setAttribute('aria-pressed', on); });
     const show = () => { main.src = t.dataset.src; main.alt = t.dataset.alt; main.classList.remove('swap'); };
     if (RM) show(); else { main.classList.add('swap'); setTimeout(show, 180); }
@@ -305,7 +376,7 @@ safe('shots', () => {
 /* ---------- flip cards ---------- */
 safe('cards', () => {
   $$('#cards .card').forEach(card => {
-    const flip = () => card.classList.toggle('flipped');
+    const flip = () => { card.classList.toggle('flipped'); SFX.flip(); };
     card.addEventListener('click', flip);
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
     if (FINE && !RM) {
@@ -331,12 +402,12 @@ safe('tabs', () => {
     const m = $('#msgs'); if (m) m.scrollTop = m.scrollHeight;
   };
   tabs.forEach((t, i) => {
-    t.addEventListener('click', () => select(t));
+    t.addEventListener('click', () => { if (t.getAttribute('aria-selected') !== 'true') SFX.click(); select(t); });
     t.addEventListener('keydown', e => {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
       e.preventDefault();
       const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-      n.focus(); select(n);
+      n.focus(); select(n); SFX.click();
     });
   });
 });
@@ -490,11 +561,11 @@ safe('dag', () => {
       setNode(id, 'running'); live[i].s = 'running'; renderRows(live);
       await sleep(RM ? 50 : Math.min(820, 280 + p.ms[id] * 2));
       inc.forEach(e => { if (taken(p, e)) setEdge(e[0] + e[1], 'done'); });
-      setNode(id, 'success');
+      setNode(id, 'success'); SFX.click();
       live[i] = { id, s: 'success', ms: p.ms[id], out: fmtOut(p.out[id]) }; renderRows(live);
     }
     BASE.forEach(e => { if (!taken(p, e)) setEdge(e[0] + e[1], 'dim'); });
-    summary(p);
+    summary(p); SFX.win();
     busy = false; runB.disabled = false;
   }
   runB.addEventListener('click', run);
@@ -541,8 +612,9 @@ safe('retry', () => {
       const code = Math.random() < p ? pick([429, 500, 502, 503, 'timeout']) : 200;
       const ms = code === 'timeout' ? 1000 : ri(70, 260);
       await fill(attRow(n, code, ms), ms, true); total += ms;
-      if (code === 200) { res.className = 'msg ok'; res.textContent = 'Boss defeated! 200 OK after ' + n + ' attempt' + (n > 1 ? 's' : '') + ' · ' + (total / 1000).toFixed(2) + ' s end to end'; break; }
-      if (n - 1 >= max) { res.className = 'msg err'; res.textContent = 'Retreat after ' + n + ' attempts (' + max + ' retries). The last ' + (code === 'timeout' ? 'timeout' : code) + ' goes to the centralized error middleware, which returns a clean 502 to the caller.'; break; }
+      code === 200 ? SFX.crit() : SFX.hit();
+      if (code === 200) { setTimeout(SFX.win, 160); res.className = 'msg ok'; res.textContent = 'Boss defeated! 200 OK after ' + n + ' attempt' + (n > 1 ? 's' : '') + ' · ' + (total / 1000).toFixed(2) + ' s end to end'; break; }
+      if (n - 1 >= max) { setTimeout(SFX.lose, 160); res.className = 'msg err'; res.textContent = 'Retreat after ' + n + ' attempts (' + max + ' retries). The last ' + (code === 'timeout' ? 'timeout' : code) + ' goes to the centralized error middleware, which returns a clean 502 to the caller.'; break; }
       let delay = Math.round(200 * Math.pow(2, n - 1) * (1 + rand(-0.2, 0.2))), note = '';
       if (code === 429 && delay < 1000) { delay = 1000; note = 'Retry-After: 1s wins'; }
       await fill(waitRow(delay, n - 1, note), delay, true); total += delay;
@@ -566,8 +638,8 @@ safe('pos', () => {
   const menu = $('#posMenu'), cartEl = $('#posCart'), charge = $('#posCharge'), net = $('#posNet'), netLab = $('#posNetLab'), devEl = $('#posDev'), srvEl = $('#posSrv'), devN = $('#posDevN'), srvN = $('#posSrvN'), log = $('#posLog'), wrap = $('#posWrap');
   const inr = n => '₹' + n.toLocaleString('en-IN');
   menu.innerHTML = MENU.map(([n, p]) => '<button type="button" data-item="' + esc(n) + '">' + esc(n) + '<b>' + inr(p) + '</b></button>').join('');
-  menu.addEventListener('click', e => { const b = e.target.closest('[data-item]'); if (!b) return; const k = b.dataset.item; cart.set(k, (cart.get(k) || 0) + 1); renderCart(); });
-  cartEl.addEventListener('click', e => { const b = e.target.closest('[data-rm]'); if (!b) return; const k = b.dataset.rm; const q = (cart.get(k) || 0) - 1; if (q > 0) cart.set(k, q); else cart.delete(k); renderCart(); });
+  menu.addEventListener('click', e => { const b = e.target.closest('[data-item]'); if (!b) return; const k = b.dataset.item; cart.set(k, (cart.get(k) || 0) + 1); renderCart(); SFX.click(); });
+  cartEl.addEventListener('click', e => { const b = e.target.closest('[data-rm]'); if (!b) return; const k = b.dataset.rm; const q = (cart.get(k) || 0) - 1; if (q > 0) cart.set(k, q); else cart.delete(k); renderCart(); SFX.tick(); });
   const total = () => [...cart].reduce((a, [k, q]) => a + price[k] * q, 0);
   function renderCart() {
     cartEl.innerHTML = cart.size ? [...cart].map(([k, q]) => '<li><span>' + q + ' × ' + esc(k) + '</span><span>' + inr(price[k] * q) + '</span><button type="button" data-rm="' + esc(k) + '" aria-label="Remove one ' + esc(k) + '">−</button></li>').join('') : '<li class="empty">Tap the menu to add items.</li>';
@@ -585,7 +657,7 @@ safe('pos', () => {
     while (device.length && online) {
       await sleep(RM ? 60 : 700);
       if (!online || !device.length) break;
-      const b = device.shift(); server.unshift(b); renderQ(null, b.id);
+      const b = device.shift(); server.unshift(b); renderQ(null, b.id); SFX.open();
       say(b.id + ' synced · POST /bills → 201');
     }
     syncing = false;
@@ -594,13 +666,13 @@ safe('pos', () => {
     const t = total(); if (!t) return;
     const items = [...cart.values()].reduce((a, q) => a + q, 0);
     const b = { id: 'B-' + (no++), total: t, items };
-    cart.clear(); renderCart();
+    cart.clear(); renderCart(); SFX.coin();
     device.push(b); renderQ(b.id);
     say(b.id + ' written to IndexedDB' + (online ? ' · syncing' : ' · offline, queued'));
     if (online) sync();
   });
   net.addEventListener('change', () => {
-    online = net.checked; netLab.textContent = online ? 'Online' : 'Offline';
+    online = net.checked; online ? SFX.up() : SFX.down(); netLab.textContent = online ? 'Online' : 'Offline';
     wrap.classList.toggle('offline', !online);
     if (online) { say('reconnected · ' + device.length + ' bill' + (device.length === 1 ? '' : 's') + ' to sync'); sync(); }
     else say('network lost · billing continues offline');
@@ -656,7 +728,7 @@ safe('chat', () => {
     while (used() > BUDGET && msgs.length > 2) cut.push(msgs.shift());
     if (!cut.length) return;
     const t = cut.reduce((a, m) => a + m.tk, 0);
-    cut.forEach(m => m.el.classList.add('trimmed'));
+    cut.forEach(m => m.el.classList.add('trimmed')); SFX.snip();
     const div = document.createElement('div'); div.className = 'cut';
     div.textContent = 'context trimmed · ' + cut.length + ' oldest message' + (cut.length > 1 ? 's' : '') + ' dropped · −' + t + ' tokens';
     msgsEl.insertBefore(div, msgs[0].el);
@@ -670,6 +742,7 @@ safe('chat', () => {
   async function ask(q) {
     q = (q || '').trim(); if (!q || busy) return;
     busy = true; input.value = '';
+    SFX.click();
     push('user', q, bubble('user', q));
     const a = answer(q);
     await sleep(RM ? 0 : 280);
@@ -678,7 +751,7 @@ safe('chat', () => {
     if (RM) tx.textContent = a;
     else { for (let i = 0; i <= a.length; i += 3) { tx.textContent = a.slice(0, i); msgsEl.scrollTop = msgsEl.scrollHeight; await sleep(12); } tx.textContent = a; }
     d.querySelector('.who').textContent = 'shubham-bot · ' + tok(a) + ' tok';
-    d.classList.remove('typing');
+    d.classList.remove('typing'); SFX.blip();
     push('bot', a, d);
     busy = false;
   }
@@ -693,7 +766,7 @@ safe('chat', () => {
 safe('copy', () => {
   $$('[data-copy]').forEach(b => b.addEventListener('click', () => {
     const target = document.getElementById(b.dataset.target);
-    const done = t => { b.textContent = t; clearTimeout(b._t); b._t = setTimeout(() => { b.textContent = 'Copy'; }, 1800); };
+    const done = t => { SFX.coin(); b.textContent = t; clearTimeout(b._t); b._t = setTimeout(() => { b.textContent = 'Copy'; }, 1800); };
     const select = () => { const r = document.createRange(); r.selectNodeContents(target); const s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected'); };
     try { navigator.clipboard.writeText(b.dataset.copy).then(() => done('Copied!'), select); } catch (e) { select(); }
   }));
@@ -744,15 +817,17 @@ safe('terminal', () => {
     if (cmd === 'clear') { out.innerHTML = ''; return; }
     if (cmd === 'exit' || cmd === 'quit') { close(); return; }
     const f = CMD[cmd];
-    if (!f) { print('unknown cheat code: ' + cmd + '. type "help".', 'err'); return; }
+    if (!f) { SFX.err(); print('unknown cheat code: ' + cmd + '. type "help".', 'err'); return; }
+    SFX.open();
     const r = f(cmd === 'moves' || cmd === 'skills' ? arg.toLowerCase() : arg);
     if (r) print(r);
   }
   const boot = () => { print('CHEAT CODE CONSOLE · type "help"', 'dim'); print('try: moves backend · story · sudo hire-shubham · start', 'dim'); };
-  function open() { lastFocus = document.activeElement; term.hidden = false; if (!out.childElementCount) boot(); setTimeout(() => input.focus(), 20); }
+  function open() { lastFocus = document.activeElement; term.hidden = false; SFX.open(); if (!out.childElementCount) boot(); setTimeout(() => input.focus(), 20); }
   function close() { if (term.hidden) return; term.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
   form.addEventListener('submit', e => { e.preventDefault(); exec(input.value); input.value = ''; });
   input.addEventListener('keydown', e => {
+    if (e.key.length === 1 || e.key === 'Backspace') SFX.tick();
     if (e.key === 'ArrowUp') { e.preventDefault(); if (hi > 0) { hi--; input.value = hist[hi]; } }
     else if (e.key === 'ArrowDown') { e.preventDefault(); if (hi < hist.length - 1) { hi++; input.value = hist[hi]; } else { hi = hist.length; input.value = ''; } }
   });
@@ -770,7 +845,7 @@ safe('terminal', () => {
     if (e.key === 'Escape' && !term.hidden) { close(); return; }
     if (typing) return;
     const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    if (k === KON[ki]) { ki++; if (ki === KON.length) { ki = 0; impact('スーパー!!'); lineEl.textContent = 'Secret code! +30 lives.'; } }
+    if (k === KON[ki]) { ki++; if (ki === KON.length) { ki = 0; impact('スーパー!!'); setTimeout(SFX.powerup, 250); lineEl.textContent = 'Secret code! +30 lives.'; } }
     else ki = k === KON[0] ? 1 : 0;
   });
 });

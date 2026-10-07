@@ -56,6 +56,9 @@ kbd{font:400 13px/1 var(--pixel);border:2px solid var(--ink);border-bottom-width
 .nav a.on{border-color:var(--ink);background:var(--pop);box-shadow:3px 3px 0 var(--ink)}
 .tbtn{font:400 13px/1 var(--pixel);letter-spacing:.06em;background:var(--ink);color:var(--white);border:2.5px solid var(--ink);padding:9px 12px;cursor:pointer;white-space:nowrap;border-radius:8px;flex:none}
 .tbtn:hover{background:var(--pink)}
+.tbtn.snd{background:var(--pop);color:var(--ink)}
+.tbtn.snd.off{background:var(--white);color:var(--muted);text-decoration:line-through}
+.tbtn.snd:hover{background:var(--pink);color:var(--white)}
 .expbar{position:absolute;left:0;bottom:-3px;height:3px;width:100%;pointer-events:none}
 .expbar i{display:block;height:100%;width:0;background:var(--pink)}
 .expbar span{position:absolute;right:var(--gut);top:5px;font:400 10px/1 var(--pixel);letter-spacing:.1em;background:var(--ink);color:var(--white);padding:3px 6px}
@@ -476,6 +479,7 @@ kbd{font:400 13px/1 var(--pixel);border:2px solid var(--ink);border-bottom-width
 }
 @media (max-width:640px){
   .logo-t{display:none}
+  .snd-t{display:none}
   .lab{padding:16px}
   .lab-intro{grid-template-columns:minmax(0,1fr)}
   .from{justify-self:start;white-space:normal}

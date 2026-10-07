@@ -290,6 +290,18 @@ safe('nav', () => {
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 });
 
+/* ---------- side quest screenshots ---------- */
+safe('shots', () => {
+  const main = $('#shotMain'), thumbs = $$('#questShots .shot-thumb');
+  if (!main) return;
+  thumbs.forEach(t => t.addEventListener('click', () => {
+    if (t.classList.contains('on')) return;
+    thumbs.forEach(o => { const on = o === t; o.classList.toggle('on', on); o.setAttribute('aria-pressed', on); });
+    const show = () => { main.src = t.dataset.src; main.alt = t.dataset.alt; main.classList.remove('swap'); };
+    if (RM) show(); else { main.classList.add('swap'); setTimeout(show, 180); }
+  }));
+});
+
 /* ---------- flip cards ---------- */
 safe('cards', () => {
   $$('#cards .card').forEach(card => {

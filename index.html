@@ -23,6 +23,7 @@
     <a href="#moves"><b>EP2</b>Moves</a>
     <a href="#story"><b>EP3</b>Story</a>
     <a href="#missions"><b>EP4</b>Missions</a>
+    <a href="#sidequest"><b>EP5</b>Side quest</a>
     <a href="#next"><b>NEXT</b>Contact</a>
   </nav>
   <button class="tbtn" id="termBtn" type="button">Cheat codes</button>
@@ -485,6 +486,46 @@ retry({
         <ul class="ctxlog" id="ctxLog"><li class="none">nothing trimmed yet</li></ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="ep" id="sidequest">
+  <header class="ep-head">
+    <span class="hanko" lang="ja">第5話</span>
+    <span class="ep-label">Episode 05 · Side quest · a project of his own</span>
+    <h2 class="ep-title" style="--c:var(--sky)">Side quest</h2>
+    <span class="ep-jp" lang="ja" aria-hidden="true">外伝</span>
+  </header>
+  <div class="arcs">
+    <article class="arc" style="--c:var(--pop)">
+      <div class="pn pn-title">
+        <div class="chap"><span class="jp" lang="ja">外伝</span>SIDE STORY 01</div>
+        <h3 class="arc-name">Linework</h3>
+        <p class="arc-role">Design docs and diagrams, side by side</p>
+        <p class="arc-meta">React · Vite · Netlify Edge Functions · Claude API</p>
+        <span class="stamp live" lang="ja">公開中<small>LIVE</small></span>
+      </div>
+      <div class="pn pn-art" aria-hidden="true">
+        <svg viewBox="0 0 220 170"><rect x="12" y="18" width="196" height="134" rx="8" fill="#fff" stroke="#141414" stroke-width="4"/><path d="M84 18 V152" stroke="#141414" stroke-width="3"/><path d="M24 36 H70 M24 52 H62 M24 68 H70 M24 84 H54 M24 100 H66" stroke="#141414" stroke-width="3" stroke-linecap="round"/><rect x="100" y="34" width="38" height="24" rx="4" fill="#3DB2FF" stroke="#141414" stroke-width="3"/><rect x="156" y="34" width="38" height="24" rx="4" fill="#2EE6A6" stroke="#141414" stroke-width="3"/><rect x="128" y="104" width="44" height="28" rx="4" fill="#FF3D8B" stroke="#141414" stroke-width="3"/><path d="M138 46 H156 M119 58 L140 104 M175 58 L160 104" stroke="#141414" stroke-width="3" stroke-linecap="round"/><path d="M196 4 L199 13 L208 16 L199 19 L196 28 L193 19 L184 16 L193 13 Z" fill="#FFD23F" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pn pn-a">
+        <p class="narr">Off the clock, our hero builds Linework: a React app for technical design docs, with a markdown doc beside a live diagram canvas.</p>
+        <p class="narr">Architecture diagrams, flowcharts, sequence diagrams and database schemas are written as code, then parsed, laid out and rendered to SVG by hand-built engines.</p>
+      </div>
+      <div class="pn pn-b">
+        <svg class="av" viewBox="64 12 192 228" aria-hidden="true"><use href="#ch-head"></use></svg>
+        <p class="bubble">Describe a system in plain words and the AI drafts the diagram and the doc for you!</p>
+      </div>
+      <div class="pn pn-c">
+        <p class="narr y">AI generation runs through a Netlify Edge Function, so the API key never reaches the browser.</p>
+        <p class="narr">Pan, zoom, drag, templates, tabs, export and a light/dark theme. Files are saved in browser storage.</p>
+        <div class="quest-links">
+          <a class="cbtn" href="https://shub-linework.netlify.app/" target="_blank" rel="noopener">Play it live ↗</a>
+          <a class="cbtn alt" href="https://github.com/sraj452002/LineWork" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </div>
+      </div>
+      <div class="pn pn-items"><h4>ITEM GET!</h4><ul><li>React 18</li><li>Vite</li><li>SVG</li><li>Markdown</li><li>Edge Functions</li><li>Claude API</li><li>localStorage</li></ul></div>
+    </article>
   </div>
 </section>
 

@@ -284,7 +284,7 @@ safe('nav', () => {
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) chips.forEach(c => c.classList.toggle('on', c.getAttribute('href') === '#' + e.target.id));
     }), { rootMargin: '-35% 0px -60% 0px' });
-    ['top', 'profile', 'moves', 'story', 'missions', 'next'].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+    ['top', 'profile', 'moves', 'story', 'missions', 'sidequest', 'next'].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
   }
   const onScroll = () => { const h = document.documentElement.scrollHeight - innerHeight; fill.style.width = Math.max(0, Math.min(1, scrollY / (h || 1))) * 100 + '%'; };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
@@ -697,7 +697,7 @@ safe('terminal', () => {
   $$('#cards .card').forEach(c => { const name = $('h3', c).textContent; SK[name.toLowerCase()] = { name, items: $$('.back li', c).map(l => l.firstChild.textContent.trim()) }; });
   const alias = { frontend: 'frontend', fe: 'frontend', backend: 'backend', be: 'backend', db: 'databases', databases: 'databases', database: 'databases', cloud: 'cloud & devops', devops: 'cloud & devops', ops: 'cloud & devops', testing: 'testing & tools', tools: 'testing & tools', test: 'testing & tools', ai: 'ai / llm', llm: 'ai / llm', languages: 'languages', lang: 'languages', practices: 'practices' };
   const CMD = {
-    help: () => 'cheat codes\n  whoami         who is this\n  profile        the character sheet\n  moves [cat]    special moves · frontend backend db cloud testing ai practices languages\n  story          the three arcs\n  origin         the four-panel origin story\n  missions       jump to the training missions\n  contact        how to reach him\n  start          power up!\n  ls · cat <file> · cd <episode> · clear · exit\n  …and one classic code with the arrow keys',
+    help: () => 'cheat codes\n  whoami         who is this\n  profile        the character sheet\n  moves [cat]    special moves · frontend backend db cloud testing ai practices languages\n  story          the three arcs\n  origin         the four-panel origin story\n  missions       jump to the training missions\n  linework       the side quest: Linework\n  contact        how to reach him\n  start          power up!\n  ls · cat <file> · cd <episode> · clear · exit\n  …and one classic code with the arrow keys',
     whoami: () => 'shubham raj · full stack software engineer (MERN) · NIIT, Gurugram',
     profile: () => 'name      Shubham Raj\nclass     Full Stack Software Engineer (MERN)\nguild     NIIT, Gurugram\nbase      Delhi NCR, India\norigin    B.Tech, Electrical Engineering\nspecial   DAG-based workflow automation',
     moves: a => {
@@ -709,9 +709,10 @@ safe('terminal', () => {
     origin: () => '2017     Class X (AISSE) · Sunshine Prep/High School, Muzaffarpur\n2019     Class XII (AISSCE) · Trident Public School, Muzaffarpur\n2019–23  B.Tech, Electrical Engineering · Dr. B.C. Roy Engineering College, Durgapur\n2024     first production deploy · Webmintra Technologies, Noida',
     contact: () => 'email     sraj452002@gmail.com\nphone     +91 7766062587\nlinkedin  https://linkedin.com/in/shubham2002\ngithub    https://github.com/sraj452002',
     missions: () => { goto('missions'); return 'loading episode 04 · training missions'; },
+    linework: () => { goto('sidequest'); return 'loading episode 05 · side quest: linework'; },
     start: () => { close(); setTimeout(() => { window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }); setTimeout(() => impact(), RM ? 0 : 450); }, 60); return 'POWER UP!'; },
-    ls: () => 'profile.txt   story.log   contact.txt   resume.pdf   moves/   missions/',
-    cd: a => { const d = (a || '').replace(/\/$/, '').toLowerCase(); const map = { '': 'top', '~': 'top', '/': 'top', profile: 'profile', moves: 'moves', story: 'story', missions: 'missions', next: 'next', contact: 'next' }; if (d in map) { goto(map[d]); return ''; } return 'cd: no such episode: ' + a; },
+    ls: () => 'profile.txt   story.log   contact.txt   resume.pdf   moves/   missions/   sidequest/',
+    cd: a => { const d = (a || '').replace(/\/$/, '').toLowerCase(); const map = { '': 'top', '~': 'top', '/': 'top', profile: 'profile', moves: 'moves', story: 'story', missions: 'missions', sidequest: 'sidequest', linework: 'sidequest', next: 'next', contact: 'next' }; if (d in map) { goto(map[d]); return ''; } return 'cd: no such episode: ' + a; },
     cat: a => {
       const F = { 'profile.txt': CMD.profile(), 'contact.txt': CMD.contact(), 'story.log': CMD.story(), 'resume.pdf': 'binary file. the readable version is this whole series.' };
       if (!a) return 'cat: missing file name. try: cat profile.txt';
